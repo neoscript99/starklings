@@ -2,7 +2,7 @@
 
 # Starknet provide persistent and mutable storage
 
-# I AM NOT DONE
+# I AM DONE
 
 # TODO
 # Create a storage named `bool` storing a single felt
@@ -11,6 +11,9 @@
 
 from starkware.cairo.common.cairo_builtins import HashBuiltin
 
+@storage_var
+func bool() -> (v : felt):
+end
 @external
 func test_store_bool{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
     let (x) = bool.read()

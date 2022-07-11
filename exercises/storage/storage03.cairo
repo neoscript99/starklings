@@ -2,7 +2,7 @@
 
 # You can update stored values using externals, or just consult them (for free) using views
 
-# I AM NOT DONE
+# I AM DONE
 
 @storage_var
 func bool() -> (bool : felt):
@@ -12,6 +12,8 @@ end
 func toggle{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
     # TODO
     # Implement toggle external
+    let (a) = bool.read()
+    bool.write(1 - a)
 end
 
 @view
@@ -20,6 +22,7 @@ func view_bool{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr
 ):
     # TODO
     # Implement view_bool
+    return bool.read()
 end
 
 # TESTS #

@@ -3,7 +3,7 @@
 # There are multiple ways to scan through an array.
 # Using recursion, one could go forwards or backwards.
 
-# I AM NOT DONE
+# I AM DONE
 
 from starkware.cairo.common.math_cmp import is_le
 from starkware.cairo.common.alloc import alloc
@@ -22,8 +22,8 @@ func is_increasing{range_check_ptr : felt}(array : felt*, array_len : felt) -> (
         return (1)
     end
 
-    let curr_value = 0
-    let next_value = 0
+    let curr_value = [array]
+    let next_value = [array + 1]
 
     # Do not modify these lines
     let (is_sorted) = is_le(curr_value, next_value)
@@ -40,13 +40,18 @@ end
 # Return 0 otherwise
 
 func is_decreasing{range_check_ptr : felt}(array : felt*, array_len : felt) -> (res : felt):
+    if array_len == 2:
+        return (1)
+    end
     # FILL ME
+    let curr_value = array[array_len - 1]
+    let next_value = array[array_len - 2]
 
     # Do not modify this line
     let (is_sorted) = is_le(curr_value, next_value)
 
     if is_sorted == 1:
-        return is_decreasing(array, array_len)
+        return is_decreasing(array, array_len - 1)
     end
 
     return (0)
@@ -57,8 +62,12 @@ end
 # Assume rev_array is already allocated
 
 func reverse(array : felt*, rev_array : felt*, array_len : felt):
+    if array_len == 0:
+        return ()
+    end
     # FILL ME
-    return ()
+    assert [rev_array] = array[array_len - 1]
+    return reverse(array, rev_array + 1, array_len - 1)
 end
 
 # Do not modify the test
