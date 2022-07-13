@@ -9,7 +9,9 @@
 # It is also worth noting that a struct pointer implicitely casts to a felt pointer
 # (eg. Foo* is automatically casted to felt*)
 
-# I AM NOT DONE
+
+# I am looking for cairo jobs, typescript and react is also ok.
+# mailto: neoscript@gmail.com
 
 struct Vector2D:
     member x : felt
@@ -28,8 +30,26 @@ end
 #   - the squared magnitude of a 3D vector (x,y,z) is x * x + y * y + z * z.
 func squared_magnitude(struct_value : felt*, struct_size : felt) -> (res : felt):
     # FILL ME
+    alloc_locals
+    if struct_size == 2:
+        local v2d : Vector2D = [cast(struct_value, Vector2D*)]
+        return (v2d.x * v2d.x + v2d.y * v2d.y)
+    else:
+        local v3d : Vector3D = [cast(struct_value, Vector3D*)]
+        return (v3d.x * v3d.x + v3d.y * v3d.y + v3d.z * v3d.z)
+    end
 end
-
+func squared_magnitude2(struct_value : felt*, struct_size : felt) -> (res : felt):
+    # FILL ME
+    alloc_locals
+    if struct_size == 2:
+        return ([struct_value] * [struct_value] + [struct_value + 1] * [struct_value + 1])
+    else:
+        return (
+            [struct_value] * [struct_value] + [struct_value + 1] * [struct_value + 1] + [struct_value + 2] * [struct_value + 2],
+        )
+    end
+end
 # TESTS #
 
 @external

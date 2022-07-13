@@ -3,7 +3,8 @@
 # Getting pointer as function arguments let us modify the values at the memory address of the pointer
 # ...or not! Cairo memory is immutable. Therefore you cannot just update a memory cell.
 
-# I AM DONE
+# I am looking for cairo jobs, typescript and react is also ok.
+# mailto: neoscript@gmail.com
 
 # TODO: Update the square function – you can change the body and the signature –
 # to make it achieve the desired result: returning an array

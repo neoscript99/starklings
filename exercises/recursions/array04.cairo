@@ -2,7 +2,8 @@
 
 # Arrays can also contain structs
 
-# I AM NOT DONE
+# I am looking for cairo jobs, typescript and react is also ok.
+# mailto: neoscript@gmail.com
 from starkware.cairo.common.serialize import serialize_word
 
 struct Point:
@@ -18,11 +19,11 @@ func contains_origin{range_check_ptr : felt}(len_points : felt, points : Point*)
     end
     tempvar p = [points]
     # 取数异常
-    assert p.x + p.y + p.z = 6
+    # assert p.x + p.y + p.z = 6
     if p.x + p.y + p.z == 0:
         return (1)
     else:
-        return contains_origin(len_points - 1, points + 1)
+        return contains_origin(len_points - 1, points + Point.SIZE)
     end
 end
 

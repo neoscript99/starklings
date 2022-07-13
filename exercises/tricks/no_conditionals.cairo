@@ -1,7 +1,6 @@
 %lang starknet
 
 from starkware.cairo.common.math_cmp import is_not_zero
-
 # Sometimes, conditionals can be avoided by using an expression that
 # - maps valid inputs to 1,
 # - and/or maps invalid inputs to 0.
@@ -10,7 +9,8 @@ from starkware.cairo.common.math_cmp import is_not_zero
 # Use this trick to rewrite functions without "if" conditions
 # Note: This helps to avoid dealing with revoked references.
 
-# I AM NOT DONE
+# I am looking for cairo jobs, good at typescript and react also.
+# mailto: neoscript@gmail.com
 
 func is_binary_if(x : felt) -> (res : felt):
     if x == 0:
@@ -23,10 +23,10 @@ func is_binary_if(x : felt) -> (res : felt):
 end
 
 # TODO: Return the right value to mimick the behavior of is_binary_if
-
 func is_binary_no_if(x : felt) -> (res : felt):
     # FILL ME
-    return (res)
+    let (res) = is_not_zero(x * (x - 1))
+    return (1 - res)
 end
 
 # TODO: Fix the function so that
@@ -34,13 +34,17 @@ end
 #  - it returns 'meh' on any other input
 
 func is_cool(x : felt) -> (res : felt):
-    # FILL ME
-    return (res)
+    if (x - 1337) * (x - 69420) * (x - 42) == 0:
+        return ('cool')
+    else:
+        return ('meh')
+    end
 end
 
 # Do not change the test
 @external
 func test_is_binary{syscall_ptr : felt*}():
+    alloc_locals
     let (eval_if) = is_binary_if(0)
     let (eval_no_if) = is_binary_no_if(0)
     assert (eval_if, eval_no_if) = (1, 1)
